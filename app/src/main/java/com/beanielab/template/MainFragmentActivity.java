@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.beanielab.template.fragment.StartFragment;
+import com.beanielab.template.Fragment.StartFragment;
 
 public class MainFragmentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

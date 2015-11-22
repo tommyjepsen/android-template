@@ -1,4 +1,4 @@
-package com.beanielab.template.fragment;
+package com.beanielab.template.Fragment;
 
 import android.os.Bundle;
 import android.app.Fragment;
