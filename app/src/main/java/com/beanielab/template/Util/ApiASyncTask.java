@@ -12,7 +12,7 @@ import org.json.JSONObject;
  */
 public abstract class ApiASyncTask<T> extends AsyncTask<Void, Void, ApiASyncTask.Holder<T>> {
 
-    private BAsyncListener<T> listener;
+    private ASyncListener<T> listener;
     private Holder<T> mHolder;
     private boolean mIsFetching = false;
 
@@ -22,7 +22,7 @@ public abstract class ApiASyncTask<T> extends AsyncTask<Void, Void, ApiASyncTask
 
     protected abstract void setData(T t) throws Exception;
 
-    public ApiASyncTask(BAsyncListener<T> listener) {
+    public ApiASyncTask(ASyncListener<T> listener) {
         this.listener = listener;
         mHolder = new Holder<T>();
     }
@@ -98,7 +98,7 @@ public abstract class ApiASyncTask<T> extends AsyncTask<Void, Void, ApiASyncTask
         Response response;
     }
 
-    public interface BAsyncListener<T> {
+    public interface ASyncListener<T> {
         public void onSuccess(T result);
 
         public void onError(int code);

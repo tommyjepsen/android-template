@@ -14,13 +14,16 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.beanielab.template.Fragment.StartFragment;
+import com.beanielab.template.Util.ApiASyncTask;
+import com.beanielab.template.Util.Tasks.GetDataTask;
+
+import java.util.ArrayList;
 
 public class MainFragmentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private FrameLayout fragment;
     private int fragmentId = R.id.fragmentFL;
-
+    private GetDataTask getDataTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,32 @@ public class MainFragmentActivity extends AppCompatActivity implements Navigatio
         replaceFragment(new StartFragment(), null, StartFragment.class.getSimpleName());
     }
 
+    private void doApiCall() {
+        if (getDataTask != null && getDataTask.isFetching()) {
+            return;
+        }
+
+        getDataTask = new GetDataTask(new ApiASyncTask.ASyncListener<ArrayList<String>>() {
+            @Override
+            public void onSuccess(ArrayList<String> result) {
+            }
+
+            @Override
+            public void onError(int code) {
+            }
+
+            @Override
+            public void onUnAuthorized(int code) {
+            }
+
+            @Override
+            public void onAlways() {
+            }
+        });
+
+        getDataTask.execute();
+    }
+
     public void replaceFragment(Fragment newFragment, Bundle data, String transactionName) {
         if (data != null) {
             newFragment.setArguments(data);
@@ -65,7 +94,7 @@ public class MainFragmentActivity extends AppCompatActivity implements Navigatio
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Log.d("", ""+id);
+        Log.d("", "" + id);
 
         if (id == R.id.menu_start) {
             replaceFragment(new StartFragment(), null, StartFragment.class.getSimpleName());

@@ -14,12 +14,8 @@ import java.util.ArrayList;
  */
 public class GetDataTask extends ApiASyncTask<ArrayList<String>> {
 
-    private int newsId;
-
-    public GetDataTask(int newsId, BAsyncListener<ArrayList<String>> listener) {
-        super(listener);
-
-        this.newsId = newsId;
+    public GetDataTask(ASyncListener<ArrayList<String>> aSyncListener) {
+        super(aSyncListener);
     }
 
     @Override
